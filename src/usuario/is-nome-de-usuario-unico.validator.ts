@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import {
   registerDecorator,
-  ValidationArguments,
   ValidationOptions,
   ValidatorConstraint,
   ValidatorConstraintInterface,
@@ -14,10 +13,7 @@ export class IsNomeUsuarioUnicoConstraint
   implements ValidatorConstraintInterface {
   constructor(private usuarioService: UsuarioService) {}
 
-  validate(
-    nomeDeUsuario: string,
-    _validationArguments?: ValidationArguments,
-  ): boolean | Promise<boolean> {
+  validate(nomeDeUsuario: string): boolean | Promise<boolean> {
     //converte o valor pra boleano e inverte de true pra false
     return !!!this.usuarioService.buscaPorNomeDeUsuario(nomeDeUsuario);
   }
